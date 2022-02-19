@@ -20,9 +20,10 @@ jobs:
         run: yarn codegen
       - name: Build
         run: yarn build
-      - uses: gtaschuk/graph-deploy@v0.1.10
+      - uses: gtaschuk/graph-deploy@v0.1.11
         with:
-          graph_access_token: ${{secrets.TEST_GRAPH_DEPLOY_KEY}}
+          graph_deploy_key: ${{secrets.TEST_GRAPH_DEPLOY_KEY}}
+          graph_version_label: ${GITHUB_SHA::8}
           graph_subgraph_name: "balancer-studio-v2"
           graph_account: "balancer-labs"
           graph_config_file: "subgraph.yaml"
