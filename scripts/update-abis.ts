@@ -11,10 +11,10 @@ const abiJSONfilenames = [
   'StablePool',
   'WeightedPoolFactory',
   'StablePoolFactory',
-  'BalancerPoolToken',
+  'RumblePoolToken',
   'BasePoolFactory',
   'ERC20',
-  'BalancerHelpers',
+  'RumbleHelpers',
 ].map((a) => a + '.json');
 
 glob(coreArtifactPath + '/**/!(*dbg).json', {}, (err, files) => {

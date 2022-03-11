@@ -1,5 +1,5 @@
 import { BigInt, log } from '@graphprotocol/graph-ts';
-import { Transfer } from '../types/templates/WeightedPool/BalancerPoolToken';
+import { Transfer } from '../types/templates/WeightedPool/RumblePoolToken';
 import { WeightedPool, SwapFeePercentageChanged } from '../types/templates/WeightedPool/WeightedPool';
 import {
   GradualWeightUpdateScheduled,

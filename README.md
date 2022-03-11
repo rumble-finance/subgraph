@@ -1,4 +1,4 @@
-# Balancer Subgraph
+# Rumble Subgraph
 
 The graphql schema is still under heavy development and will likely have major breaking changes.
 
@@ -12,8 +12,6 @@ This repo tracks both the subgraph and a docker configuration that allows you to
     - truffle
     - graph-cli
 - Docker
-
-Clone the `pool-management-v2` repo and `core` repo submodules
 
 ### Recommended setup: Running V2 contracts, frontend and subgraph against development parity chain
 
@@ -31,7 +29,7 @@ cd core && yarn redeploy:docker && popd
 yarn codegen && yarn create:local && yarn deploy:local
 ```
 now you should be able to interact with the graphql server at
-http://localhost:8000/subgraphs/name/balancer-labs/balancer-v2
+http://localhost:8000/subgraphs/name/rumble-finance/core-protocol
 
 Start the pool management frontend:
 ```
@@ -78,14 +76,14 @@ docker-compose kill && docker-compose rm -f && rm -rf data
 ## Components
 ### Contracts
 
-Deploy balancer contracts using truffle. Using the `yarn deploy` script in balancer-v2 also makes this easy to test out the subgraph using the frontend.
+Deploy rumble contracts using truffle. Using the `yarn deploy` script in rumble-v2 also makes this easy to test out the subgraph using the frontend.
 
 ### Subgraph
 
-Clone the balancer subgraph
+Clone the rumble subgraph
 
 ```
-git clone git@github.com:balancer-labs/balancer-subgraph-v2.git
+git clone git@github.com:rumble-finance/subgraph.git
 ```
 
 Update deployed contract address in subgraph.yaml to the ones listed as part of the deploy

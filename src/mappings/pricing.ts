@@ -1,8 +1,8 @@
 import { Address, Bytes, BigInt, BigDecimal } from '@graphprotocol/graph-ts';
-import { Pool, TokenPrice, Balancer, PoolHistoricalLiquidity, LatestPrice } from '../types/schema';
+import { Pool, TokenPrice, Rumble, PoolHistoricalLiquidity, LatestPrice } from '../types/schema';
 import { ZERO_BD, PRICING_ASSETS, USD_STABLE_ASSETS, ONE_BD } from './helpers/constants';
 import { hasVirtualSupply, PoolType } from './helpers/pools';
-import { createPoolSnapshot, getBalancerSnapshot, getToken, getTokenPriceId, loadPoolToken } from './helpers/misc';
+import { createPoolSnapshot, getRumbleSnapshot, getToken, getTokenPriceId, loadPoolToken } from './helpers/misc';
 
 export function isPricingAsset(asset: Address): boolean {
   for (let i: i32 = 0; i < PRICING_ASSETS.length; i++) {
@@ -115,11 +115,11 @@ export function updatePoolLiquidity(poolId: string, block: BigInt, pricingAsset:
   createPoolSnapshot(pool, timestamp);
 
   // Update global stats
-  let vault = Balancer.load('2') as Balancer;
+  let vault = Rumble.load('2') as Rumble;
   vault.totalLiquidity = vault.totalLiquidity.plus(liquidityChange);
   vault.save();
 
-  let vaultSnapshot = getBalancerSnapshot(vault.id, timestamp);
+  let vaultSnapshot = getRumbleSnapshot(vault.id, timestamp);
   vaultSnapshot.totalLiquidity = vault.totalLiquidity;
   vaultSnapshot.save();
 

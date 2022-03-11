@@ -14,7 +14,7 @@ interface TestCase {
   variables?: QueryVariables;
 }
 
-const SUBGRAPH_QUERY_ENDPOINT = 'http://127.0.0.1:8000/subgraphs/name/balancer-labs/balancer-v2';
+const SUBGRAPH_QUERY_ENDPOINT = 'http://127.0.0.1:8000/subgraphs/name/rumble-finance/core-protocol';
 
 export const runTestCases = async (groupName: string, testCases: TestCase[]): void => {
   const linkOptions = { uri: SUBGRAPH_QUERY_ENDPOINT, fetch };

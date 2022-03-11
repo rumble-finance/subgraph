@@ -1,5 +1,5 @@
 # Vault
-type Balancer @entity {
+type Rumble @entity {
   id: ID!
   poolCount: Int!
   pools: [Pool!] @derivedFrom(field: "vaultID")
@@ -32,7 +32,7 @@ type Pool @entity {
   swapsCount: BigInt!
   holdersCount: BigInt!
 
-  vaultID: Balancer!
+  vaultID: Rumble!
   tx: Bytes
 
   tokensList: [Bytes!]!
@@ -223,7 +223,7 @@ type Token @entity {
   name: String
   decimals: Int!
   address: String!
-  totalBalanceUSD: BigDecimal! # total balance of tokens across balancer
+  totalBalanceUSD: BigDecimal! # total balance of tokens across rumble
   totalBalanceNotional: BigDecimal!
   totalVolumeUSD: BigDecimal! # total volume in fiat (usd)
   totalVolumeNotional: BigDecimal!
@@ -235,7 +235,7 @@ type TokenSnapshot @entity {
   id: ID! # token address + dayId
   token: Token!
   timestamp: Int! # timestamp representing the start of day in UTC
-  totalBalanceUSD: BigDecimal! # total balance of tokens across balancer
+  totalBalanceUSD: BigDecimal! # total balance of tokens across rumble
   totalBalanceNotional: BigDecimal! # underlying asset balance
   totalVolumeUSD: BigDecimal! # amount of volume the token has moved on this day
   totalVolumeNotional: BigDecimal! # underyling asset volume
@@ -259,9 +259,9 @@ type TradePairSnapshot @entity {
   totalSwapFee: BigDecimal!
 }
 
-type BalancerSnapshot @entity {
+type RumbleSnapshot @entity {
   id: ID!
-  vault: Balancer!
+  vault: Rumble!
   timestamp: Int!
   poolCount: Int!
   totalLiquidity: BigDecimal!

@@ -95,9 +95,9 @@ Object {
 exports[`TokenPrices resolvers getTotalLiquidity 1`] = `
 Object {
   "data": Object {
-    "balancers": Array [
+    "rumbles": Array [
       Object {
-        "__typename": "Balancer",
+        "__typename": "Rumble",
         "id": "2",
         "totalLiquidity": "49303061.89357238770835822117385191",
       },

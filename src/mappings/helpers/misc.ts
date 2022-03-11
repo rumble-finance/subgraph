@@ -10,8 +10,8 @@ import {
   TokenSnapshot,
   TradePair,
   TradePairSnapshot,
-  BalancerSnapshot,
-  Balancer,
+  RumbleSnapshot,
+  Rumble,
 } from '../../types/schema';
 import { ERC20 } from '../../types/Vault/ERC20';
 import { Swap as SwapEvent } from '../../types/Vault/Vault';
@@ -338,16 +338,16 @@ export function getTradePairSnapshot(tradePairId: string, timestamp: i32): Trade
   return snapshot;
 }
 
-export function getBalancerSnapshot(vaultId: string, timestamp: i32): BalancerSnapshot {
+export function getRumbleSnapshot(vaultId: string, timestamp: i32): RumbleSnapshot {
   let dayID = timestamp / 86400;
   let id = vaultId + '-' + dayID.toString();
-  let snapshot = BalancerSnapshot.load(id);
+  let snapshot = RumbleSnapshot.load(id);
 
   if (snapshot == null) {
     let dayStartTimestamp = dayID * 86400;
-    snapshot = new BalancerSnapshot(id);
+    snapshot = new RumbleSnapshot(id);
     // we know that the vault should be created by this call
-    let vault = Balancer.load('2') as Balancer;
+    let vault = Rumble.load('2') as Rumble;
     snapshot.poolCount = vault.poolCount;
 
     snapshot.totalLiquidity = vault.totalLiquidity;

@@ -21,7 +21,7 @@ const testCases = [
     id: 'getTotalLiquidity',
     query: gql`
       query {
-        balancers {
+        rumbles {
           id
           totalLiquidity
         }

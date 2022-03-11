@@ -1,11 +1,11 @@
 specVersion: 0.0.2
-description: Balancer is a non-custodial portfolio manager, liquidity provider, and price sensor.
+description: Rumble is a non-custodial portfolio manager, liquidity provider, and price sensor.
 {{#if graft}}
 graft:
   base: {{graft.base}}
   block: {{graft.block}}
 {{/if}}
-repository: https://github.com/balancer-labs/balancer-subgraph-v2
+repository: https://github.com/rumble-finance/subgraph
 schema:
   file: ./schema.graphql
 dataSources:
@@ -22,7 +22,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/vault.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
         - PoolToken
         - User
@@ -31,7 +31,7 @@ dataSources:
         - TokenSnapshot
         - TradePair
         - TradePairSnapshot
-        - BalancerSnapshot
+        - RumbleSnapshot
       abis:
         - name: Vault
           file: ./abis/Vault.json
@@ -63,7 +63,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -77,6 +77,7 @@ dataSources:
       eventHandlers:
         - event: PoolCreated(indexed address)
           handler: handleNewWeightedPool
+  {{#if WeightedPool2TokenFactory}}
   - kind: ethereum/contract
     name: WeightedPool2TokenFactory
     network: {{network}}
@@ -90,7 +91,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -104,6 +105,7 @@ dataSources:
       eventHandlers:
         - event: PoolCreated(indexed address)
           handler: handleNewWeightedPool
+  {{/if}}
   {{#if StablePoolFactory}}
   - kind: ethereum/contract
     name: StablePoolFactory
@@ -118,7 +120,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -147,7 +149,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -178,7 +180,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -209,7 +211,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -240,7 +242,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -271,7 +273,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -300,7 +302,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -331,7 +333,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/poolFactory.ts
       entities:
-        - Balancer
+        - Rumble
         - Pool
       abis:
         - name: Vault
@@ -365,8 +367,8 @@ templates:
       abis:
         - name: WeightedPool
           file: ./abis/WeightedPool.json
-        - name: BalancerPoolToken
-          file: ./abis/BalancerPoolToken.json
+        - name: RumblePoolToken
+          file: ./abis/RumblePoolToken.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
@@ -392,8 +394,8 @@ templates:
           file: ./abis/WeightedPool.json
         - name: StablePool
           file: ./abis/StablePool.json
-        - name: BalancerPoolToken
-          file: ./abis/BalancerPoolToken.json
+        - name: RumblePoolToken
+          file: ./abis/RumblePoolToken.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
@@ -426,8 +428,8 @@ templates:
           file: ./abis/StablePool.json
         - name: MetaStablePool
           file: ./abis/MetaStablePool.json
-        - name: BalancerPoolToken
-          file: ./abis/BalancerPoolToken.json
+        - name: RumblePoolToken
+          file: ./abis/RumblePoolToken.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
@@ -461,8 +463,8 @@ templates:
           file: ./abis/WeightedPool.json
         - name: ConvergentCurvePool
           file: ./abis/ConvergentCurvePool.json
-        - name: BalancerPoolToken
-          file: ./abis/BalancerPoolToken.json
+        - name: RumblePoolToken
+          file: ./abis/RumblePoolToken.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer

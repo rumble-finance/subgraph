@@ -5,7 +5,7 @@ import {
   PoolBalanceManaged,
   InternalBalanceChanged,
 } from '../types/Vault/Vault';
-import { Balancer, Pool, Swap, JoinExit, Investment, TokenPrice, UserInternalBalance } from '../types/schema';
+import { Rumble, Pool, Swap, JoinExit, Investment, TokenPrice, UserInternalBalance } from '../types/schema';
 import {
   tokenToDecimal,
   getTokenPriceId,
@@ -19,7 +19,7 @@ import {
   updateTokenBalances,
   getTradePairSnapshot,
   getTradePair,
-  getBalancerSnapshot,
+  getRumbleSnapshot,
 } from './helpers/misc';
 import { updatePoolWeights } from './helpers/weighted';
 import { isPricingAsset, updatePoolLiquidity, valueInUSD, swapValueInUSD } from './pricing';
@@ -361,13 +361,13 @@ export function handleSwapEvent(event: SwapEvent): void {
   pool.save();
 
   // update vault total swap volume
-  let vault = Balancer.load('2') as Balancer;
+  let vault = Rumble.load('2') as Rumble;
   vault.totalSwapVolume = vault.totalSwapVolume.plus(swapValueUSD);
   vault.totalSwapFee = vault.totalSwapFee.plus(swapFeesUSD);
   vault.totalSwapCount = vault.totalSwapCount.plus(BigInt.fromI32(1));
   vault.save();
 
-  let vaultSnapshot = getBalancerSnapshot(vault.id, blockTimestamp);
+  let vaultSnapshot = getRumbleSnapshot(vault.id, blockTimestamp);
   vaultSnapshot.totalSwapVolume = vault.totalSwapVolume;
   vaultSnapshot.totalSwapFee = vault.totalSwapFee;
   vaultSnapshot.totalSwapCount = vault.totalSwapCount;
